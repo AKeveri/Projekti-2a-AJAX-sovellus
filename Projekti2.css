@@ -27,6 +27,7 @@ body {
 tbody {
     width: 350px;
     height: 200px;
+    border-top: 2px dotted black;
 }
 
 .images {

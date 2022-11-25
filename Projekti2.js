@@ -9,14 +9,14 @@ function lataaPaikat() {
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var xmlDoc = xmlhttp.responseXML;
-            var theatreNames = xmlDoc.getElementsByTagName("Name");
-            var theatreIDs = xmlDoc.getElementsByTagName("ID");
+            var nimet = xmlDoc.getElementsByTagName("Name");
+            var id = xmlDoc.getElementsByTagName("ID");
 
-            for (var i = 0; i < theatreNames.length; i++) {
-                var theatreText = theatreNames[i].innerHTML;
-                var theatreID = theatreIDs[i].innerHTML;
+            for (var i = 0; i < nimet.length; i++) {
+                var nimiTeksti = nimet[i].innerHTML;
+                var nimiId = id[i].innerHTML;
 
-                document.getElementById("teatTerit").innerHTML += '<option value = ' + theatreID + '>' + theatreText + '</option>';
+                document.getElementById("teatTerit").innerHTML += '<option value = ' + nimiId + '>' + nimiTeksti + '</option>';
             }
         }
     }
@@ -40,7 +40,7 @@ function lataaAikataulu() {
             var otsikot = xmlDoc.getElementsByTagName("Title");
             var kuvat = xmlDoc.getElementsByTagName("EventSmallImagePortrait");
             var ajat = xmlDoc.getElementsByTagName("dttmShowStart");
-            var rating = xmlDoc.getElementsByTagName("RatingImageUrl");
+            var arvio = xmlDoc.getElementsByTagName("RatingImageUrl");
             var kuvaus = xmlDoc.getElementsByTagName("ContentDescriptors");
             var kesto = xmlDoc.getElementsByTagName("LengthInMinutes")
             for (var i = 0; i < otsikot.length; i++) {
@@ -48,7 +48,7 @@ function lataaAikataulu() {
                 // Valitaan 
                 var title = otsikot[i].innerHTML;
                 var aikataulu = ajat[i].innerHTML;
-                var ratingIMG = '<img src="' + rating[i].innerHTML + '">';
+                var arvioKuva = '<img src="' + arvio[i].innerHTML + '">';
                 var kokonaisKesto = kesto[i].innerHTML;
 
                 var aika = aikataulu.slice(11, 16);
@@ -63,7 +63,7 @@ function lataaAikataulu() {
                     varoitukset += '<img src="' + kuvaukSet[j].getElementsByTagName("ImageURL")[0].innerHTML + '">';
                 }
 
-                document.getElementById("lista").innerHTML += '<tr><td>' + kuva + '</td><td>' + title + '<br/>' + paiva + "." + kuukausi + "." + vuosi + " " + aika + '<br/>' + "Kesto: " + kokonaisKesto + " minuuttia <br/> <br/>" + ratingIMG + varoitukset + '</td>';
+                document.getElementById("lista").innerHTML += '<tr><td>' + kuva + '</td><td>' + title + '<br/>' + paiva + "." + kuukausi + "." + vuosi + " " + aika + '<br/>' + "Kesto: " + kokonaisKesto + " minuuttia <br/> <br/>" + arvioKuva + varoitukset + '</td>';
 
             }
         }
